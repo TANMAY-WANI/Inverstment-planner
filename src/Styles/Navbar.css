@@ -1,9 +1,0 @@
-/* Navbar.css */
-.custom-navbar {
-    background-color: transparent !important; /* Important to override Bootstrap styles */
-    box-shadow: none; /* Remove any default box shadow */
-  }
-
-  .justify-end {
-    justify-content: flex-end !important;
-  }
