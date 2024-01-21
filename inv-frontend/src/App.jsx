@@ -1,11 +1,14 @@
 import React from 'react'
-import Navbar from './Components/Navbar'
-import Banner from './Components/banner'
+import { BrowserRouter as Router, Route,Routes } from 'react-router-dom'
+import PgOne from './Pages/PgOne'
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <Banner />
+      <Router>
+        <Routes>
+          <Route path='/' element={<PgOne />} />
+        </Routes>
+      </Router>
     </div>
   )
 }
