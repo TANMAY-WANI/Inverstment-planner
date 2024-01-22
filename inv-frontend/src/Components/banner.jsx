@@ -1,7 +1,22 @@
 import React from 'react'
 import '../Styles/Banner.css'
+import { useNavigate } from 'react-router-dom'
+import Signup from './Signup'
+
 
 const Banner = () => {
+
+    const navigate = useNavigate();
+    const [showSignup, setShowSignup] = React.useState(false);
+    const handlePlanning = () => {
+        console.log('Planning');
+        if (localStorage.getItem("token_invest_iq")) {
+            navigate("/Plan")
+        }
+        else {
+            setShowSignup(true);
+        }
+    }
     return (
         <>
             <h1>Plan your Investments</h1>
@@ -19,7 +34,7 @@ const Banner = () => {
                                 <input type="number" id="age" name="age" />
                             </div>
                         </div>
-                        <input type="button" value="Plan my Investment" />
+                        <input type="button" value="Plan my Investment"  onClick={handlePlanning}/>
                     </form>
                     <hr />
                 </div>
@@ -27,6 +42,7 @@ const Banner = () => {
                     <img className='banner-img' src="banner-img.png" alt="" />
                 </div>
             </div>
+            <Signup show={showSignup} setShow={setShowSignup} />
         </>
     )
 }

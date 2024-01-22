@@ -1,9 +1,23 @@
 // Navbar.js
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Navbar.css';
+import Login from './Login';
+import Signup from './Signup';
 
 const Navbar = () => {
+
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+
+  const handleLogin = () => {
+    console.log('Login');
+    setShowLogin(true);
+  };
+  const handleSignup = () => {
+    console.log('Signup');
+    setShowSignup(true);
+  }
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-transparent custom-navbar">
       <div className="container">
@@ -34,19 +48,22 @@ const Navbar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Services
+              <a className="nav-link" href="#" onClick={handleLogin}>
+                Login
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Contact
+              <a className="nav-link" href="#" onClick={handleSignup}>
+                Signup
               </a>
             </li>
           </ul>
         </div>
       </div>
+      <Login show={showLogin} setShow={setShowLogin} />
+      <Signup show={showSignup} setShow={setShowSignup} />
     </nav>
+
   );
 };
 
