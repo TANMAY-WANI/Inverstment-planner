@@ -24,11 +24,15 @@ function Login({show,setShow}) {
       "password": password
     }
     console.log(data);
-    axios.post("http://localhost:5001/auth/login", data)
+    // axios.post("http://localhost:5010/auth/login",{"Name":"Tanmay"})
+    // .then((res)=>{
+    //   console.log("Posted Successfully")
+    // })
+    axios.post("http://localhost:5010/auth/login", data)
     .then((res)=>{
       console.log(res.data);
-      localStorage.setItem("token_invest_iq", res.data);
-      navigate("/Home");
+      // localStorage.setItem("token_invest_iq", res.data);
+      // navigate("/Home");
     }).catch((err)=>{
       console.log(err);
     });

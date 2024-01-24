@@ -35,7 +35,7 @@ function Signup({show,setShow}) {
 
     console.log(userData);
     //post request
-    axios.post("http://localhost:5001/auth/signup",userData)
+    axios.post("http://localhost:5010/auth/signup",userData)
     .then((res)=>{
       localStorage.setItem("token",res.data);
       navigate("/home")
