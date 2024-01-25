@@ -3,6 +3,10 @@ from flask_cors import CORS
 from gemini import get_detailed_plan
 from pdf_generator import text_to_pdf
 from Database.db import get_database
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 app = Flask(__name__)
@@ -32,7 +36,7 @@ def signup():
 
 
 if  __name__ == "__main__":
-    uri = "mongodb+srv://tanmaywani145:u3Vvz7eqnFEPvXEU@cluster01.hcklk0h.mongodb.net/invest-iq-users?retryWrites=true&w=majority"
+    uri = os.getenv("MONGO_URI")
     db = get_database(uri,"users")
     print("Connected to MongoDB")
     app.run(host='localhost',port='5010')
