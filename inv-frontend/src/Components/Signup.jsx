@@ -37,13 +37,21 @@ function Signup({show,setShow}) {
     //post request
     axios.post("http://localhost:5010/auth/signup",userData)
     .then((res)=>{
-      localStorage.setItem("token",res.data);
+      // localStorage.setItem(res.data);
+      localStorage.setItem("invest_iq_access_token",res.data["invest_iq_signup_token"]);
       navigate("/home")
 
     }).catch((err)=>{
       console.log(err);
     })
   }
+
+  useEffect(() => {
+    if(localStorage.getItem("invest_iq_access_token")){
+      navigate("/Home");
+    }
+  }
+  , []);
 
 
   return (

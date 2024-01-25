@@ -24,22 +24,18 @@ function Login({show,setShow}) {
       "password": password
     }
     console.log(data);
-    // axios.post("http://localhost:5010/auth/login",{"Name":"Tanmay"})
-    // .then((res)=>{
-    //   console.log("Posted Successfully")
-    // })
     axios.post("http://localhost:5010/auth/login", data)
     .then((res)=>{
       console.log(res.data);
-      // localStorage.setItem("token_invest_iq", res.data);
-      // navigate("/Home");
+      localStorage.setItem("invest_iq_access_token",res.data["invest_iq_login_token"]);
+      navigate("/Home");
     }).catch((err)=>{
       console.log(err);
     });
   }
 
   useEffect(() => {
-    if(localStorage.getItem("token_invest_iq")){
+    if(localStorage.getItem("invest_iq_access_token")){
       navigate("/Home");
     }
   }
