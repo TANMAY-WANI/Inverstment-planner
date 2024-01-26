@@ -28,7 +28,7 @@ function Login({show,setShow}) {
     .then((res)=>{
       console.log(res.data);
       localStorage.setItem("invest_iq_access_token",res.data["invest_iq_login_token"]);
-      navigate("/Home");
+      window.location.reload();
     }).catch((err)=>{
       console.log(err);
     });
@@ -36,7 +36,7 @@ function Login({show,setShow}) {
 
   useEffect(() => {
     if(localStorage.getItem("invest_iq_access_token")){
-      navigate("/Home");
+      navigate("/");
     }
   }
   , []);

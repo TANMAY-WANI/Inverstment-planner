@@ -39,7 +39,8 @@ function Signup({show,setShow}) {
     .then((res)=>{
       // localStorage.setItem(res.data);
       localStorage.setItem("invest_iq_access_token",res.data["invest_iq_signup_token"]);
-      navigate("/home")
+      // navigate("/home")
+      window.location.reload();
 
     }).catch((err)=>{
       console.log(err);
@@ -48,7 +49,7 @@ function Signup({show,setShow}) {
 
   useEffect(() => {
     if(localStorage.getItem("invest_iq_access_token")){
-      navigate("/Home");
+      navigate("/");
     }
   }
   , []);

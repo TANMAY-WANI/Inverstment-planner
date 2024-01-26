@@ -1,31 +1,6 @@
-2024-01-25 19:56:08,622 - INFO -  * Detected change in '/Users/tanmay/Documents/InvestIQ/inv-planner-backend/app.py', reloading
-2024-01-25 19:56:09,220 - INFO -  * Restarting with stat
-2024-01-25 19:56:10,530 - WARNING -  * Debugger is active!
-2024-01-25 19:56:10,543 - INFO -  * Debugger PIN: 790-987-330
-2024-01-25 19:56:11,575 - INFO - 127.0.0.1 - - [25/Jan/2024 19:56:11] "OPTIONS /auth/signup HTTP/1.1" 200 -
-2024-01-25 19:56:12,097 - WARNING - User tanmaywani145@gmail.com tried re-signup
-2024-01-25 19:56:12,097 - INFO - 127.0.0.1 - - [25/Jan/2024 19:56:12] "[31m[1mPOST /auth/signup HTTP/1.1[0m" 430 -
-2024-01-25 20:05:44,013 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://localhost:5010
-2024-01-25 20:05:44,014 - INFO - [33mPress CTRL+C to quit[0m
-2024-01-25 20:05:44,016 - INFO -  * Restarting with stat
-2024-01-25 20:05:44,952 - WARNING -  * Debugger is active!
-2024-01-25 20:05:44,966 - INFO -  * Debugger PIN: 790-987-330
-2024-01-25 20:05:48,358 - INFO - 127.0.0.1 - - [25/Jan/2024 20:05:48] "OPTIONS /auth/signup HTTP/1.1" 200 -
-2024-01-25 20:05:48,944 - INFO - 127.0.0.1 - - [25/Jan/2024 20:05:48] "[35m[1mPOST /auth/signup HTTP/1.1[0m" 500 -
-2024-01-25 20:06:27,242 - INFO -  * Detected change in '/Users/tanmay/Documents/InvestIQ/inv-planner-backend/app.py', reloading
-2024-01-25 20:06:27,896 - INFO -  * Restarting with stat
-2024-01-25 20:06:28,948 - WARNING -  * Debugger is active!
-2024-01-25 20:06:28,958 - INFO -  * Debugger PIN: 790-987-330
-2024-01-25 20:07:06,326 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://localhost:5010
-2024-01-25 20:07:06,327 - INFO - [33mPress CTRL+C to quit[0m
-2024-01-25 20:07:06,328 - INFO -  * Restarting with stat
-2024-01-25 20:07:07,094 - WARNING -  * Debugger is active!
-2024-01-25 20:07:07,104 - INFO -  * Debugger PIN: 790-987-330
-2024-01-25 20:07:14,072 - INFO - 127.0.0.1 - - [25/Jan/2024 20:07:14] "OPTIONS /auth/signup HTTP/1.1" 200 -
-2024-01-25 20:07:14,529 - INFO - Successfully signed up the user: 123@123.com
-2024-01-25 20:07:14,529 - INFO - 127.0.0.1 - - [25/Jan/2024 20:07:14] "POST /auth/signup HTTP/1.1" 200 -
-2024-01-25 20:08:03,887 - INFO - 127.0.0.1 - - [25/Jan/2024 20:08:03] "OPTIONS /auth/login HTTP/1.1" 200 -
-2024-01-25 20:08:03,947 - ERROR - User not found
-2024-01-25 20:08:03,948 - INFO - 127.0.0.1 - - [25/Jan/2024 20:08:03] "[33mPOST /auth/login HTTP/1.1[0m" 404 -
+2024-01-26 16:02:19,877 - INFO - 127.0.0.1 - - [26/Jan/2024 16:02:19] "OPTIONS /auth/login HTTP/1.1" 200 -
+2024-01-26 16:02:20,089 - INFO - User tanmaywani145@gmail.com logged in successfully
+2024-01-26 16:02:20,090 - INFO - 127.0.0.1 - - [26/Jan/2024 16:02:20] "POST /auth/login HTTP/1.1" 200 -
+2024-01-26 16:03:37,493 - INFO - 127.0.0.1 - - [26/Jan/2024 16:03:37] "OPTIONS /auth/login HTTP/1.1" 200 -
+2024-01-26 16:03:37,537 - INFO - User tanmaywani145@gmail.com logged in successfully
+2024-01-26 16:03:37,537 - INFO - 127.0.0.1 - - [26/Jan/2024 16:03:37] "POST /auth/login HTTP/1.1" 200 -

@@ -2,16 +2,18 @@ import React from 'react'
 import '../Styles/Banner.css'
 import { useNavigate } from 'react-router-dom'
 import Signup from './Signup'
+import PlanBox from './PlanBox'
 
 
 const Banner = () => {
 
     const navigate = useNavigate();
     const [showSignup, setShowSignup] = React.useState(false);
+    const [showPlanBox,setShowPlanBox] = React.useState(false);
     const handlePlanning = () => {
         console.log('Planning');
-        if (localStorage.getItem("token_invest_iq")) {
-            navigate("/Plan")
+        if (localStorage.getItem("invest_iq_access_token")) {
+            setShowPlanBox(true)
         }
         else {
             setShowSignup(true);
@@ -43,6 +45,7 @@ const Banner = () => {
                 </div>
             </div>
             <Signup show={showSignup} setShow={setShowSignup} />
+            <PlanBox show = {showPlanBox} setShow={setShowPlanBox}/>
         </>
     )
 }

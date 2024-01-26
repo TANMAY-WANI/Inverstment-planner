@@ -10,6 +10,9 @@ const Navbar = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
+  const isUserLoggedIn = ()=>{
+    return localStorage.getItem("invest_iq_access_token") != null
+  }
   const handleLogin = () => {
     console.log('Login');
     setShowLogin(true);
@@ -47,16 +50,20 @@ const Navbar = () => {
                 About
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#" onClick={handleLogin}>
-                Login
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#" onClick={handleSignup}>
-                Signup
-              </a>
-            </li>
+            {!isUserLoggedIn() && (
+        <>
+          <li className="nav-item">
+            <a className="nav-link" href="#" onClick={handleLogin}>
+              Login
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#" onClick={handleSignup}>
+              Signup
+            </a>
+          </li>
+        </>
+      )}
           </ul>
         </div>
       </div>
