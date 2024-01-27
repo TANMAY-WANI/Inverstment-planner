@@ -30,14 +30,14 @@ const BannerContainer = () => {
   };
 
   const handlePlanBoxFormSubmit = (planBoxData) => {
-      setPlanBoxFormData(planBoxData);
+    //   setPlanBoxFormData(planBoxData);
       setShowPlanBox(false)
+    //   console.log(planBoxFormData);
     const CombinedData = {
         "token":localStorage.getItem('invest_iq_access_token'),
       ...bannerFormData,
-      ...planBoxFormData,
+      ...planBoxData,
     };
-
     axios.post('http://localhost:5010/api/v1/plan', CombinedData).then((res) => {
       console.log(res.data);
     });

@@ -4,6 +4,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 import logging
+from bson.objectid import ObjectId
 
 # Helper Programs
 from Helpers.gemini import get_detailed_plan
@@ -80,8 +81,9 @@ def get_plan():
     collection = db["user-info"]
     acc_token = data["token"]
     user_id = decode_token(acc_token)
-    res = collection.find({"_id":user_id["id"]})
-    output_filename = res["email"]+".pdf"
+    print(user_id)
+    res = collection.find_one({"_id":ObjectId(user_id["id"])})
+    output_filename = "/Users/tanmay/Documents/InvestIQ/"+res["email"]+".pdf"
     text_to_pdf(plan,output_filename)
 
     # sending the pdf file
