@@ -1,5 +1,5 @@
 # Core imports
-from flask import Flask, jsonify,request
+from flask import Flask, jsonify,request,send_file
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
@@ -8,7 +8,7 @@ import logging
 # Helper Programs
 from Helpers.gemini import get_detailed_plan
 from Helpers.pdf_generator import text_to_pdf
-from Helpers.tokens import get_token
+from Helpers.tokens import get_token,decode_token
 
 # Database
 from Database.db import get_database
@@ -51,6 +51,41 @@ def signup():
     token = get_token(payload=payload)
     logging.info("Successfully signed up the user: "+user_info['email'])
     return {"invest_iq_signup_token":token}
+
+
+@app.route("/api/v1/plan",methods=["POST"])
+def get_plan():
+    data = request.get_json()
+    logging.info(f"Received data: {data}")
+
+    print(data)
+    age = int(data["age"])
+    current_salary = int(data["currSalary"])  # Ensure conversion to int
+    saving_capacity = int(int(data["saving"]) / 100)
+    goal_amount = int(data["goalAmt"])
+    goal_description = data["goalDesc"]
+    goal_time_limit = int(data["goalAge"])
+
+    # Ensure that current_salary and saving_capacity are integers before subtraction
+    monthly_spending = current_salary - int(current_salary * saving_capacity)
+
+    query = f"I am a {age}-year-old individual. I am currently working with a monthly salary of rupees {current_salary}. My risk-taking appetite is {saving_capacity} (on a scale of 0 to 1). I spend around {monthly_spending}/month out of my salary on myself and my family. My goal is to {goal_description.lower()} priced at {goal_amount} at the age of {goal_time_limit+age}. Do a detailed study and come up with a suitable investment plan."
+
+    # ...
+
+    plan = get_detailed_plan(query)
+    logging.info("Successfully generated plan for the user")
+
+    # converting the plan to pdf
+    collection = db["user-info"]
+    acc_token = data["token"]
+    user_id = decode_token(acc_token)
+    res = collection.find({"_id":user_id["id"]})
+    output_filename = res["email"]+".pdf"
+    text_to_pdf(plan,output_filename)
+
+    # sending the pdf file
+    return send_file(output_filename,as_attachment=True)
 
 
 if  __name__ == "__main__":

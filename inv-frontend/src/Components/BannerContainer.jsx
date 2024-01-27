@@ -33,6 +33,7 @@ const BannerContainer = () => {
       setPlanBoxFormData(planBoxData);
       setShowPlanBox(false)
     const CombinedData = {
+        "token":localStorage.getItem('invest_iq_access_token'),
       ...bannerFormData,
       ...planBoxFormData,
     };

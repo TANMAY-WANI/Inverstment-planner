@@ -3,7 +3,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 
 
-def text_to_pdf(text, output_filename='output.pdf'):
+def text_to_pdf(text, output_filename):
     # Create a PDF document with letter size pages
     doc = SimpleDocTemplate(output_filename, pagesize=letter)
     story = []
