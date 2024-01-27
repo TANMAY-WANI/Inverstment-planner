@@ -27,7 +27,6 @@ def login():
     user_info = request.get_json()
     result = collection.find_one(user_info)
     if (result):
-        # print("User successfully logged in")
         logging.info("User "+user_info['email']+" logged in successfully")
         payload = {"id":str(result["_id"])}
         token = get_token(payload)
@@ -42,7 +41,6 @@ def signup():
     collection = db["user-info"]
     user_info = request.get_json()
     res =  collection.find_one({'email':user_info["email"]})
-    print(res)
     if (collection.find_one({"email":user_info["email"]}) != None):
         logging.warning("User "+user_info['email']+" tried re-signup")
         error_message = "User already exist"
@@ -59,7 +57,6 @@ def get_plan():
     data = request.get_json()
     logging.info(f"Received data: {data}")
 
-    print(data)
     age = int(data["age"])
     current_salary = int(data["currSalary"])  # Ensure conversion to int
     saving_capacity = int(int(data["saving"]) / 100)
@@ -72,8 +69,6 @@ def get_plan():
 
     query = f"I am a {age}-year-old individual. I am currently working with a monthly salary of rupees {current_salary}. My risk-taking appetite is {saving_capacity} (on a scale of 0 to 1). I spend around {monthly_spending}/month out of my salary on myself and my family. My goal is to {goal_description.lower()} priced at {goal_amount} at the age of {goal_time_limit+age}. Do a detailed study and come up with a suitable investment plan."
 
-    # ...
-
     plan = get_detailed_plan(query)
     logging.info("Successfully generated plan for the user")
 
@@ -81,7 +76,6 @@ def get_plan():
     collection = db["user-info"]
     acc_token = data["token"]
     user_id = decode_token(acc_token)
-    print(user_id)
     res = collection.find_one({"_id":ObjectId(user_id["id"])})
     output_filename = "/Users/tanmay/Documents/InvestIQ/"+res["email"]+".pdf"
     text_to_pdf(plan,output_filename)
