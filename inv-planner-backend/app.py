@@ -59,7 +59,7 @@ def get_plan():
 
     age = int(data["age"])
     current_salary = int(data["currSalary"])  # Ensure conversion to int
-    saving_capacity = int(int(data["saving"]) / 100)
+    saving_capacity = (int(data["saving"]) / 100)
     goal_amount = int(data["goalAmt"])
     goal_description = data["goalDesc"]
     goal_time_limit = int(data["goalAge"])
@@ -85,7 +85,7 @@ def get_plan():
 
 
 if  __name__ == "__main__":
-    logging.basicConfig(filename='backend_logs.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename='inv-planner-backend/backend_logs.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     uri = os.getenv("MONGO_URI")
     db = get_database(uri,"users")
     print("Connected to MongoDB")

@@ -27,8 +27,9 @@ def text_to_pdf(text, output_filename):
             heading_text = line[2:-2]
             story.append(Paragraph(heading_text, heading_style))
         else:
+            format_text = line.replace('**', '')
             # Normal text
-            story.append(Paragraph(line, normal_style))
+            story.append(Paragraph(format_text, normal_style))
 
     # Add spacing between paragraphs
     story.append(Spacer(1, 12))
