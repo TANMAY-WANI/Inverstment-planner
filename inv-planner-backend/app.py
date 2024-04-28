@@ -13,6 +13,7 @@ from Helpers.tokens import get_token,decode_token
 
 # Database
 from Database.db import get_database
+from Database.db import store_data
 
 load_dotenv()
 
@@ -57,6 +58,7 @@ def get_plan():
     data = request.get_json()
     logging.info(f"Received data: {data}")
 
+    store_data(data)
     age = int(data["age"])
     current_salary = int(data["currSalary"])  # Ensure conversion to int
     saving_capacity = (int(data["saving"]) / 100)

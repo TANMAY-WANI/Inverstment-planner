@@ -2,6 +2,8 @@
 .custom-navbar {
     background-color: transparent !important; /* Important to override Bootstrap styles */
     box-shadow: none; /* Remove any default box shadow */
+    padding-left: 2%;
+    padding-right: 2%;
   }
 
   .justify-end {

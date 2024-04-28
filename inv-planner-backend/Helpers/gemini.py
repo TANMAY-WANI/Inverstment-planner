@@ -12,6 +12,6 @@ def get_detailed_plan(query):
     genai.configure(api_key=GOOGLE_API_KEY)
 
     model = genai.GenerativeModel('gemini-pro')
-    response = model.generate_content(query)
+    response = model.generate_content(query) 
 
     return response.text
