@@ -3,7 +3,6 @@ from flask import Flask, jsonify,request,send_file
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
-import logging
 from bson.objectid import ObjectId
 
 # Helper Programs
@@ -28,13 +27,11 @@ def login():
     user_info = request.get_json()
     result = collection.find_one(user_info)
     if (result):
-        logging.info("User "+user_info['email']+" logged in successfully")
         payload = {"id":str(result["_id"])}
         token = get_token(payload)
         return {"invest_iq_login_token":token}
     else:
         error_message = "User not found"
-        logging.error(error_message)
         return jsonify({"error": error_message}), 404
 
 @app.route("/auth/signup",methods=["POST"])
@@ -43,20 +40,17 @@ def signup():
     user_info = request.get_json()
     res =  collection.find_one({'email':user_info["email"]})
     if (collection.find_one({"email":user_info["email"]}) != None):
-        logging.warning("User "+user_info['email']+" tried re-signup")
         error_message = "User already exist"
         return jsonify({"error": error_message}), 430
     res = collection.insert_one(user_info)
     payload = {"id" : str(res.inserted_id)}
     token = get_token(payload=payload)
-    logging.info("Successfully signed up the user: "+user_info['email'])
     return {"invest_iq_signup_token":token}
 
 
 @app.route("/api/v1/plan",methods=["POST"])
 def get_plan():
     data = request.get_json()
-    logging.info(f"Received data: {data}")
 
     store_data(data)
     age = int(data["age"])
@@ -72,7 +66,6 @@ def get_plan():
     query = f"I am a {age}-year-old individual. I am currently working with a monthly salary of rupees {current_salary}. My risk-taking appetite is {saving_capacity} (on a scale of 0 to 1). I spend around {monthly_spending}/month out of my salary on myself and my family. My goal is to {goal_description.lower()} priced at {goal_amount} at the age of {goal_time_limit+age}. Do a detailed study and come up with a suitable investment plan."
 
     plan = get_detailed_plan(query)
-    logging.info("Successfully generated plan for the user")
 
     # converting the plan to pdf
     collection = db["user-info"]
@@ -87,7 +80,6 @@ def get_plan():
 
 
 if  __name__ == "__main__":
-    logging.basicConfig(filename='inv-planner-backend/backend_logs.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     uri = os.getenv("MONGO_URI")
     db = get_database(uri,"users")
     print("Connected to MongoDB")
