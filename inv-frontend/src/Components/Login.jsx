@@ -58,7 +58,7 @@ function Login({show,setShow}) {
               />
                <Form.Label>Password</Form.Label>
               <Form.Control
-                type="text"
+                type="password"
                 autoFocus
                 onChange={handlePassword}
               />
