@@ -86,6 +86,6 @@ if  __name__ == "__main__":
     uri = os.getenv("MONGO_URI")
     db = get_database(uri,"users")
     print("Connected to MongoDB")
-    app.run(host='localhost',port=5010,debug=True)
+    app.run()
 
 

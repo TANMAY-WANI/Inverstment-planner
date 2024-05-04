@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Banner from './banner';
+import Banner from './Banner';
 import PlanBox from './PlanBox';
 import Signup from './Signup';
 import axios from 'axios';
@@ -38,7 +38,7 @@ const BannerContainer = () => {
       ...bannerFormData,
       ...planBoxData,
     };
-    axios.post('http://localhost:5010/api/v1/plan', CombinedData, { responseType: 'blob' })
+    axios.post('https://inv-backend-three.vercel.app/api/v1/plan', CombinedData, { responseType: 'blob' })
     .then((response) => {
       // Create a blob from the response data
       const blob = new Blob([response.data], { type: 'application/pdf' });

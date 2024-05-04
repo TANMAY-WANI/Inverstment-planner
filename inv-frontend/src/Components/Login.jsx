@@ -24,7 +24,7 @@ function Login({show,setShow}) {
       "password": password
     }
     console.log(data);
-    axios.post("http://localhost:5010/auth/login", data)
+    axios.post("https://inv-backend-three.vercel.app/auth/login", data)
     .then((res)=>{
       console.log(res.data);
       localStorage.setItem("invest_iq_access_token",res.data["invest_iq_login_token"]);

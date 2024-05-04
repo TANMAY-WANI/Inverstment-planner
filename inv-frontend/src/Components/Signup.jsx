@@ -35,7 +35,7 @@ function Signup({show,setShow}) {
 
     console.log(userData);
     //post request
-    axios.post("http://localhost:5010/auth/signup",userData)
+    axios.post("https://inv-backend-three.vercel.app/auth/signup",userData)
     .then((res)=>{
       // localStorage.setItem(res.data);
       localStorage.setItem("invest_iq_access_token",res.data["invest_iq_signup_token"]);
