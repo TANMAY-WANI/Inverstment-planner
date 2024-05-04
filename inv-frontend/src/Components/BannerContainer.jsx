@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Banner from './Banner';
+import Banner from './banner';
 import PlanBox from './PlanBox';
 import Signup from './Signup';
 import axios from 'axios';
