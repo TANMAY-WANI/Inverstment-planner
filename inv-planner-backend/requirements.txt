@@ -4,6 +4,5 @@ flask
 flask-cors
 pymongo
 python-dotenv
-bson
 ipython
-jwt
+pycryptodome

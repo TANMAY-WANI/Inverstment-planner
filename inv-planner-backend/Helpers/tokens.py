@@ -1,9 +1,12 @@
-import jwt
-import datetime
 import os
+from .AES import aes_encrypt,aes_decrypt
 
 def get_token(payload):
-    return jwt.encode(payload,os.getenv("SECRET_KEY"),algorithm="HS256")
+    key =  os.getenv("SECRET_KEY")
+    return aes_encrypt(key=key,message=payload['id'])
+    
 
 def decode_token(token):
-    return jwt.decode(token,os.getenv("SECRET_KEY"),algorithms="HS256")
+    key = os.getenv("SECRET_KEY")
+    return aes_decrypt(ciphertext=token,key=key)
+

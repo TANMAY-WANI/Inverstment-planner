@@ -3,7 +3,7 @@ from flask import Flask, jsonify,request,send_file
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
-from bson.objectid import ObjectId
+
 
 # Helper Programs
 from Helpers.gemini import get_detailed_plan
@@ -23,12 +23,17 @@ CORS(app)
 
 @app.route('/auth/login',methods = ['POST'])
 def login():
+    print("Server contacted")
     collection = db["user-info"]
     user_info = request.get_json()
+    print(user_info)
     result = collection.find_one(user_info)
     if (result):
         payload = {"id":str(result["_id"])}
         token = get_token(payload)
+        # print("Token: ",token.)
+        token = token.hex()
+        print("token:",token)
         return {"invest_iq_login_token":token}
     else:
         error_message = "User not found"
@@ -51,7 +56,6 @@ def signup():
 @app.route("/api/v1/plan",methods=["POST"])
 def get_plan():
     data = request.get_json()
-
     store_data(data)
     age = int(data["age"])
     current_salary = int(data["currSalary"])  # Ensure conversion to int
@@ -71,8 +75,7 @@ def get_plan():
     collection = db["user-info"]
     acc_token = data["token"]
     user_id = decode_token(acc_token)
-    res = collection.find_one({"_id":ObjectId(user_id["id"])})
-    output_filename = "/Users/tanmay/Documents/InvestIQ/"+res["email"]+".pdf"
+    output_filename = "/Users/tanmay/Documents/InvestIQ/inv-backend.pdf"
     text_to_pdf(plan,output_filename)
 
     # sending the pdf file
